@@ -1,0 +1,15 @@
+[project]
+name = "edge-ai-lab"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.13"
+dependencies = [
+    "jupyter>=1.1.1",
+    "numpy>=2.4.6",
+    "onnxruntime>=1.27.0",
+    "openvino>=2026.2.0",
+    "pillow>=12.2.0",
+    "tensorflow>=2.21.0",
+    "tf2onnx>=1.17.0",
+]
