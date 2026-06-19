@@ -25,6 +25,10 @@ def optimize_and_evaluate_openvino(image_folder, export_dir="inception_v3_export
     # Passing the directory path string avoids the in-memory object inspection bug
     ov_model = ov.convert_model(export_dir)
     
+    # CRITICAL FOR NPU: Explicitly define static dimensions [Batch, Height, Width, Channels]
+    # This overrides the dynamic dimension [?, 299, 299, 3] to a fixed memory allocation
+    ov_model.reshape([1, 299, 299, 3])
+
     # Serialize the resulting OpenVINO graph structure to disk (.xml and .bin files)
     ov.save_model(ov_model, ov_model_path, compress_to_fp16=True)
     print(f"OpenVINO IR model successfully serialized to: {ov_model_path}")
